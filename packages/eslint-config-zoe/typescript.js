@@ -5,7 +5,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'script',
+    sourceType: 'module',
   },
   settings: {
     'import/resolver': {
@@ -75,5 +75,24 @@ module.exports = {
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': ['error'],
     '@typescript-eslint/no-empty-interface': 'off',
+
+    'no-magic-numbers': 'off',
+    '@typescript-eslint/no-magic-numbers': [
+      'warn',
+      {
+        ignore: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        ignoreArrayIndexes: true,
+        ignoreDefaultValues: true,
+        enforceConst: true,
+        detectObjects: true,
+        ignoreEnums: true,
+        ignoreNumericLiteralTypes: true,
+        ignoreReadonlyClassProperties: true,
+        ignoreTypeIndexes: true,
+      },
+    ],
+
+    '@typescript-eslint/switch-exhaustiveness-check': 'error',
+    'default-case': 'off',
   },
 };

@@ -1,5 +1,8 @@
 const path = require('path');
 
+const packageDir = path.resolve(__dirname, '.');
+const tsconfigPath = path.resolve(__dirname, './tsconfig.json');
+
 module.exports = {
   extends: ['zoe'],
   parserOptions: {
@@ -12,7 +15,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        packageDir: path.resolve(__dirname, '.'),
+        packageDir,
         devDependencies: true,
         optionalDependencies: false,
         peerDependencies: false,
@@ -24,7 +27,7 @@ module.exports = {
       files: ['./**/*.{ts,tsx}'],
       extends: ['zoe/typescript'],
       parserOptions: {
-        project: [path.resolve(__dirname, './tsconfig.json')],
+        project: [tsconfigPath],
       },
       env: {
         node: true,
@@ -33,19 +36,21 @@ module.exports = {
         'import/no-extraneous-dependencies': [
           'error',
           {
-            packageDir: path.resolve(__dirname, '.'),
+            packageDir,
             devDependencies: false,
             optionalDependencies: false,
             peerDependencies: false,
           },
         ],
+
+        'class-methods-use-this': 'off',
       },
     },
     {
-      files: ['./**/*.test.{ts,tsx}'],
+      files: ['./**/*.test.{ts}'],
       extends: ['zoe/typescript'],
       parserOptions: {
-        project: [path.resolve(__dirname, './tsconfig.json')],
+        project: [tsconfigPath],
       },
       env: {
         node: true,
@@ -55,7 +60,7 @@ module.exports = {
         'import/no-extraneous-dependencies': [
           'error',
           {
-            packageDir: path.resolve(__dirname, '.'),
+            packageDir,
             devDependencies: true,
             optionalDependencies: false,
             peerDependencies: false,

@@ -1,6 +1,7 @@
 const path = require('path');
 
 const packageDir = path.resolve(__dirname, '.');
+const tsconfigPath = path.resolve(__dirname, './tsconfig.json');
 
 module.exports = {
   extends: ['zoe'],
@@ -14,7 +15,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        packageDir: path.resolve(__dirname, '.'),
+        packageDir,
         devDependencies: true,
         optionalDependencies: false,
         peerDependencies: false,
@@ -23,32 +24,10 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/{.*,*}.js', '.*/**/{.*,*}.js'],
-      extends: ['zoe/javascript'],
+      files: ['./src/**/*.{ts,tsx}'],
+      extends: ['zoe/typescript-angular'],
       parserOptions: {
-        ecmaVersion: 'latest',
-      },
-      env: {
-        node: true,
-      },
-      rules: {
-        'import/no-extraneous-dependencies': [
-          'warn',
-          {
-            packageDir,
-            devDependencies: true,
-            optionalDependencies: false,
-            peerDependencies: false,
-          },
-        ],
-        // quotes: ["error", "double"]
-      },
-    },
-    {
-      files: ['./**/*.{ts,tsx}'],
-      extends: ['zoe/typescript-react'],
-      parserOptions: {
-        project: [path.resolve(__dirname, './tsconfig.json')],
+        project: [tsconfigPath],
       },
       env: {
         browser: true,
@@ -66,26 +45,24 @@ module.exports = {
       },
     },
     {
-      files: ['./**/*.test.{ts,tsx}'],
-      extends: ['zoe/typescript'],
+      files: ['./src/**/*.{html,scss}'],
+      extends: ['zoe/angular'],
       parserOptions: {
-        project: [path.resolve(__dirname, './tsconfig.json')],
+        project: [tsconfigPath],
       },
       env: {
-        node: true,
-        jest: true,
+        browser: true,
       },
       rules: {
         'import/no-extraneous-dependencies': [
           'error',
           {
             packageDir,
-            devDependencies: true,
+            devDependencies: false,
             optionalDependencies: false,
             peerDependencies: false,
           },
         ],
-        'no-magic-numbers': 'off',
       },
     },
   ],

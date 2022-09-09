@@ -2,10 +2,11 @@ const path = require('path');
 
 module.exports = {
   extends: [
-    'airbnb',
+    'airbnb-base',
     'prettier',
     'plugin:eslint-comments/recommended',
     'plugin:promise/recommended',
+    'plugin:eslint-comments/recommended',
   ],
   parser: '@babel/eslint-parser',
   parserOptions: {
@@ -34,8 +35,6 @@ module.exports = {
     'max-lines-per-function': 'off',
     'max-depth': ['warn', { max: 2 }],
 
-    'react/jsx-max-depth': ['warn', { max: 2 }],
-
     'import/order': [
       'error',
       {
@@ -55,7 +54,16 @@ module.exports = {
 
     'no-useless-constructor': 'error',
     'no-empty-function': 'error',
-    'no-magic-numbers': ['warn', { ignore: [0, 1, 2] }],
+    'no-magic-numbers': [
+      'warn',
+      {
+        ignore: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        ignoreArrayIndexes: true,
+        ignoreDefaultValues: true,
+        enforceConst: true,
+        detectObjects: true,
+      },
+    ],
 
     'no-plusplus': 'off',
     'no-minusminus': 'off',
@@ -69,5 +77,7 @@ module.exports = {
     'object-curly-newline': 'off',
 
     'import/no-default-export': 'error',
+
+    'eslint-comments/no-unused-disable': 'error',
   },
 };
