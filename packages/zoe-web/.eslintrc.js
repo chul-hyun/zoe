@@ -45,7 +45,7 @@ module.exports = {
       },
     },
     {
-      files: ['./src/**/*.{html,scss}'],
+      files: ['./src/**/*.{scss}'],
       extends: ['zoe/angular'],
       parserOptions: {
         project: [tsconfigPath],

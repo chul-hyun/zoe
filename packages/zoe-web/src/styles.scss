@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~normalize.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@layer base {
+  //body, html {
+  //  height: 100%;
+  //  margin: 0;
+  //  padding: 0;
+  //}
+  html {
+    @apply font-sans;
+  }
+}

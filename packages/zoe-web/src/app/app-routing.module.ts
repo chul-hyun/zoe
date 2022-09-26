@@ -2,8 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  // { path: '',   redirectTo: '/first-component', pathMatch: 'full' }, // redirect to `first-component`
-  // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
+  {
+    path: '',
+    loadChildren: () => import('./page/home/home.module').then((m) => m.HomeModule),
+    pathMatch: 'full',
+  },
+  {
+    path: 'auth-callback',
+    loadChildren: () =>
+      import('./page/auth-callback/auth-callback.module').then((m) => m.AuthCallbackModule),
+  },
 ];
 
 @NgModule({
